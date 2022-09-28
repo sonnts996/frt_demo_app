@@ -10,11 +10,11 @@ cd ..
 # choose a different release channel if you want - https://github.com/flutter/flutter/wiki/Flutter-build-release-channels
 # stable - recommended for production
 
-#git clone -b stable https://github.com/flutter/flutter.git
-#export PATH=`pwd`/flutter/bin:$PATH
+git clone -b stable https://github.com/flutter/flutter.git
+export PATH=`pwd`/flutter/bin:$PATH
 
-#flutter channel stable
-#flutter doctor
+flutter channel stable
+flutter doctor
 flutter build apk --release --flavor $BUILD_FLAVOR --build-name=$BUILD_VERSION --build-number=$BUILD_NUMBER
 
 # copy the APK where AppCenter will find it
