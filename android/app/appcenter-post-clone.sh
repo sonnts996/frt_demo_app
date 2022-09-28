@@ -16,8 +16,7 @@ export PATH=$(pwd)/flutter/bin:$PATH
 #flutter channel stable
 flutter doctor
 
-if [ "${BUILD_FLAVOR}" == "" ]
-then
+if [ "${BUILD_FLAVOR}" == "" ]; then
   FLAVOR="${APPCENTER_ANDROID_VARIANT/Release/}"
 else
   FLAVOR=$BUILD_FLAVOR
@@ -28,7 +27,8 @@ flutter build apk --release --flavor "$FLAVOR" --build-name="$BUILD_VERSION" --b
 # copy the APK where AppCenter will find it
 
 OUTPUT_FOLDER=android/app/build/outputs/apk/
-FLUTTER_OUTPUT="build/app/outputs/flutter-apk/app-${FLAVOR,,}-release.apk"
+LOWER_CASE_FLAVOR=$(echo "$FLAVOR" | tr '[:upper:]' '[:lower:]')
+FLUTTER_OUTPUT="build/app/outputs/flutter-apk/app-$LOWER_CASE_FLAVOR-release.apk"
 
 mkdir -p $OUTPUT_FOLDER
 mv "$FLUTTER_OUTPUT" "$_"
