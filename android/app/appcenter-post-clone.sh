@@ -13,14 +13,14 @@ cd ..
 git clone -b 2.10.3 https://github.com/flutter/flutter.git
 export PATH=`pwd`/flutter/bin:$PATH
 
-flutter channel stable
+#flutter channel stable
 flutter doctor
 
-if [ "${BUILD_FLAVOR}" == ""]
+if "${BUILD_FLAVOR}" == ""
 then
   FLAVOR="${APPCENTER_ANDROID_VARIANT/"Release"/""}"
 else
-  FLAVOR=BUILD_FLAVOR
+  FLAVOR=$BUILD_FLAVOR
 fi
 
 flutter build apk --release --flavor $FLAVOR --build-name=$BUILD_VERSION --build-number=$BUILD_NUMBER
