@@ -16,7 +16,7 @@ export PATH=$(pwd)/flutter/bin:$PATH
 #flutter channel stable
 flutter doctor
 
-if "${BUILD_FLAVOR}" == ""
+if [ "${BUILD_FLAVOR}" == "" ]
 then
   FLAVOR="${APPCENTER_ANDROID_VARIANT/"Release"/""}"
 else
