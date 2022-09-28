@@ -11,7 +11,7 @@ cd ..
 # stable - recommended for production
 
 git clone -b 2.10.3 https://github.com/flutter/flutter.git
-export PATH=`pwd`/flutter/bin:$PATH
+export PATH=$(pwd)/flutter/bin:$PATH
 
 #flutter channel stable
 flutter doctor
@@ -23,12 +23,14 @@ else
   FLAVOR=$BUILD_FLAVOR
 fi
 
-flutter build apk --release --flavor $FLAVOR --build-name=$BUILD_VERSION --build-number=$BUILD_NUMBER
+echo  "Build with flavor $FLAVOR"
+
+flutter build apk --release --flavor "$FLAVOR" --build-name="$BUILD_VERSION" --build-number="$BUILD_NUMBER"
 
 # copy the APK where AppCenter will find it
 
 OUTPUT_FOLDER=android/app/build/outputs/apk/
-FLUTTER_OUTPUT="build/app/outputs/flutter-apk/app-${BUILD_FLAVOR,,}-release.apk"
+FLUTTER_OUTPUT="build/app/outputs/flutter-apk/app-${FLAVOR,,}-release.apk"
 
 mkdir -p $OUTPUT_FOLDER
-mv $FLUTTER_OUTPUT $_
+mv "$FLUTTER_OUTPUT" "$_"
