@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appcenter_bundle/flutter_appcenter_bundle.dart';
 import 'package:frt_demo_app/feature/home/home.page.dart';
 
 void main() async {
