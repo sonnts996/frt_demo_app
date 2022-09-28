@@ -4,7 +4,7 @@ import 'package:frt_demo_app/feature/home/home.page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await initAppCenter();
+  await initAppCenter();
   runApp(const MyApp());
 }
 
