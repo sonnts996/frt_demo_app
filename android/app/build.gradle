@@ -64,12 +64,8 @@ android {
         }
     }
 
-    flavorDimensions "distribute", "app"
+    flavorDimensions "distribute"
     productFlavors {
-        app {
-            dimension "app"
-        }
-
         appCenter {
             dimension "distribute"
         }
