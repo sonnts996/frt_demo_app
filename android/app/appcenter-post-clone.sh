@@ -18,12 +18,10 @@ flutter doctor
 
 if [ "${BUILD_FLAVOR}" == "" ]
 then
-  FLAVOR="${APPCENTER_ANDROID_VARIANT/"Release"/""}"
+  FLAVOR="${APPCENTER_ANDROID_VARIANT/Release/}"
 else
   FLAVOR=$BUILD_FLAVOR
 fi
-
-echo  "Build with flavor $FLAVOR"
 
 flutter build apk --release --flavor "$FLAVOR" --build-name="$BUILD_VERSION" --build-number="$BUILD_NUMBER"
 
