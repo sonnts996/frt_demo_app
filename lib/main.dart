@@ -10,7 +10,7 @@ void main() async {
 
 Future initAppCenter() async {
   await AppCenter.startAsync(
-    appSecretAndroid: '******',
+    appSecretAndroid: "de4039ab-2a43-4be2-877c-231cbee8b18b",
     appSecretIOS: '******',
     enableAnalytics: true,
     // Defaults to true
