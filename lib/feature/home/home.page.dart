@@ -31,7 +31,7 @@ class HomePageState extends State<HomePage> {
         context: context,
         builder: (BuildContext context) => Container(
               height: 216,
-              padding: const EdgeInsets.only(top: 6.0),
+              padding: const EdgeInsets.only(top: 16),
               // The Bottom margin is provided to align the popup above the system navigation bar.
               margin: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -69,7 +69,7 @@ class HomePageState extends State<HomePage> {
     if (age.months > 0) {
       s += '${age.months} tháng ';
     }
-    if (age.days > 0) {
+    if (age.days > 0 || s == '') {
       s += '${age.days} ngày ';
     }
     return s.trim();
@@ -103,13 +103,9 @@ class HomePageState extends State<HomePage> {
               ));
       await Future.delayed(const Duration(seconds: 3));
       setState(() {
-        waitingMessage.value = 'Chờ thêm chút nữa nha...';
+        waitingMessage.value = 'Chờ chút, AI đang tính...';
       });
-      await Future.delayed(const Duration(seconds: 3));
-      setState(() {
-        waitingMessage.value = 'Chờ chút đang tính...';
-      });
-      await Future.delayed(const Duration(seconds: 3));
+      await Future.delayed(const Duration(seconds: 2));
       setState(() {
         waitingMessage.value = '...xong rồi nè...';
       });
@@ -168,8 +164,9 @@ class HomePageState extends State<HomePage> {
                           ]),
                     ),
                   ),
+                  const SizedBox(height: 20),
                   const Text('Tui đã tính được kết quả là bạn đã sống: '),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 20),
                   ValueListenableBuilder<DateTime?>(
                       valueListenable: date,
                       builder: (context, value, child) {
@@ -186,10 +183,10 @@ class HomePageState extends State<HomePage> {
                           );
                         }
                       }),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 24),
                   const Text(
-                      'Còn nhiêu đây ngày nữa là tới sinh nhật của bạn: '),
-                  const SizedBox(height: 8),
+                      'Còn nhiêu đây ngày nữa là tới sinh nhật kết của bạn: '),
+                  const SizedBox(height: 20),
                   ValueListenableBuilder<DateTime?>(
                       valueListenable: date,
                       builder: (context, value, child) {

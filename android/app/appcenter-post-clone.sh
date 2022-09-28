@@ -10,12 +10,25 @@ cd ..
 # choose a different release channel if you want - https://github.com/flutter/flutter/wiki/Flutter-build-release-channels
 # stable - recommended for production
 
-git clone -b stable https://github.com/flutter/flutter.git
+git clone -b 2.10.3 https://github.com/flutter/flutter.git
 export PATH=`pwd`/flutter/bin:$PATH
 
 flutter channel stable
 flutter doctor
-flutter build apk --release --flavor $BUILD_FLAVOR --build-name=$BUILD_VERSION --build-number=$BUILD_NUMBER
+
+if [ "${BUILD_FLAVOR}" == ""]
+then
+  FLAVOR="${APPCENTER_ANDROID_VARIANT/"Release"/""}"
+else
+  FLAVOR=BUILD_FLAVOR
+fi
+
+flutter build apk --release --flavor $FLAVOR --build-name=$BUILD_VERSION --build-number=$BUILD_NUMBER
 
 # copy the APK where AppCenter will find it
-mkdir -p android/app/build/outputs/apk/; mv "build/app/outputs/flutter-apk/app-${BUILD_FLAVOR,,}-release.apk" $_
+
+OUTPUT_FOLDER=android/app/build/outputs/apk/
+FLUTTER_OUTPUT="build/app/outputs/flutter-apk/app-${BUILD_FLAVOR,,}-release.apk"
+
+mkdir -p $OUTPUT_FOLDER
+mv $FLUTTER_OUTPUT $_
