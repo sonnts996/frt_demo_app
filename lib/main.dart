@@ -1,8 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_appcenter_bundle/flutter_appcenter_bundle.dart';
 import 'package:frt_demo_app/feature/home/home.page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initAppCenter();
   runApp(const MyApp());
+}
+
+Future initAppCenter() async {
+  await AppCenter.startAsync(
+    appSecretAndroid: '******',
+    appSecretIOS: '******',
+    enableAnalytics: true,
+    // Defaults to true
+    enableCrashes: true,
+    // Defaults to true
+    enableDistribute: true,
+    // Defaults to false
+    usePrivateDistributeTrack: false,
+    // Defaults to false
+    disableAutomaticCheckForUpdate: false, // Defaults to false
+  );
+  await AppCenter.configureAnalyticsAsync(enabled: true);
+  await AppCenter.configureCrashesAsync(enabled: true);
+  await AppCenter.configureDistributeAsync(enabled: true);
+  await AppCenter.configureDistributeDebugAsync(enabled: true); // Android Only
+  await AppCenter.checkForUpdateAsync(); // Manually check for update
 }
 
 class MyApp extends StatelessWidget {
