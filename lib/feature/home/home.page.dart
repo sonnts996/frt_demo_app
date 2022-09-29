@@ -6,6 +6,7 @@ import 'package:age_calculator/age_calculator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:frt_demo_app/main.dart';
 import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -210,6 +211,11 @@ class HomePageState extends State<HomePage> {
                         }
                       }),
                   const Spacer(),
+                  ElevatedButton(
+                      onPressed: () {
+                        appCenterService.checkForUpdate();
+                      },
+                      child: const Text('Check Update')),
                   FutureBuilder<String>(
                       future: getVersion(),
                       builder: (context, snapshot) {
